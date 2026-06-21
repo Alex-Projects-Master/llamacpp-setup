@@ -1,88 +1,93 @@
-# \# Llama-UI Project Setup
+# Llama.cpp Local Server Setup
 
-# 
+Local LLM server running Gemma 4 E4B with chat UI and built-in tool calling.
 
-# This project provides a secure, sandboxed environment for interacting with files using a Llama-based LLM. The system is designed to operate within a restricted workspace to ensure security and stability.
+## System Components
 
-# 
+| Component | File | Purpose |
+|-----------|------|---------|
+| Server | `Gemma 4 E4B Server.bat` | Launches llama-server.exe with model, tools, and UI config |
+| Chat UI | `my_files/Llama Chat UI.bat` | Opens Chrome app window for chat interface |
+| Launcher | `my_files/llama-ui-launcher.vbs` | Silent wrapper that launches UI bat file |
+| Config | `ui-config.json` | System prompt for Windows command defaults |
 
-# \## 🏗️ System Components
+## Launch Sequence
 
-# 
+### Step 1: Start the Server
 
-# The environment consists of the following launchers and managers:
+Run `Gemma 4 E4B Server.bat` to start the inference engine.
 
-# 
+Server binds to `192.168.1.70:1234` with tools enabled and reasoning disabled.
 
-# 1\.  \*\*LLM Server Launcher (`Gemma 4 E4B Server.bat`)\*\*: 
+### Step 2: Launch the UI
 
-# &#x20;   \*   Launches the core `llama-server.exe` engine.
+Run `my_files/Llama Chat UI.bat` (or `llama-ui-launcher.vbs` for silent launch) to open the Chrome chat window.
 
-# &#x20;   \*   Provides the raw inference capability required for the LLM to function.
+The Chrome profile is temporary and auto-deletes on close.
 
-# 
+## Configuration
 
-# 2\.  \*\*UI Launcher (`Llama Chat UI.bat`)\*\*: 
+### Workspace Folder
 
-# &#x20;   \*   Opens the Llama Chat interface as a dedicated \*\*Chrome App window\*\*.
+The server working directory is set to `C:\Workspace` in the bat file. Tool calls (read_file, write_file, etc.) operate relative to this directory.
 
-# &#x20;   \*   Provides the user interface for interacting with the model.
+To change, edit the `cd /d` line in `Gemma 4 E4B Server.bat`:
 
-# 
+```bat
+cd /d "C:\Your\Custom\Path"
+```
 
-# 3\.  \*\*Workspace Manager (`llama-ui-launcher.vbs`)\*\*: 
+### System Prompt (ui-config.json)
 
-# &#x20;   \*   Handles the creation of a \*\*temporary default folder\*\*.
+The `ui-config.json` file contains a system message that tells the model to use Windows commands instead of Linux commands when calling `exec_shell_command`.
 
-# &#x20;   \*   Ensures that this temporary workspace is automatically \*\*deleted upon closure\*\* to maintain system cleanliness.
+Edit the `systemMessage` field to customize model behavior:
 
-# 
+```json
+{
+  "systemMessage": "Your custom instructions here."
+}
+```
 
-# \---
+## Server Arguments
 
-# 
+| Argument | Value | Description |
+|----------|-------|-------------|
+| `-m` | `gemma-4-E4B-it-Q4_K_M.gguf` | Model file |
+| `-c` | `32768` | Context size |
+| `-t` | `6` | CPU threads |
+| `--host` | `192.168.1.70` | Bind address |
+| `--port` | `1234` | Bind port |
+| `-np` | `2` | Parallel slots |
+| `--embedding` | | Enable embeddings |
+| `--reasoning` | `off` | Disable reasoning |
+| `--tools` | `all` | Enable all built-in tools |
+| `--ui-config-file` | `ui-config.json` | System prompt config |
 
-# \## 🚀 Launch Sequence
+## Available Tools
 
-# 
+When `--tools all` is enabled, the model can use:
 
-# To start the environment, follow this order:
+- `read_file` — Read file contents
+- `write_file` — Write to files
+- `edit_file` — Edit existing files
+- `apply_diff` — Apply diff patches
+- `exec_shell_command` — Execute shell commands (uses `cmd /c` on Windows)
+- `grep_search` — Search file contents
+- `file_glob_search` — Search files by pattern
+- `get_datetime` — Get current date/time
 
-# 
+## Files
 
-# \### \*\*Step 1: Start the LLM Server\*\*
-
-# Run the batch file to initialize the inference engine:
-
-# `Gemma 4 E4B Server.bat`
-
-# 
-
-# \### \*\*Step 2: Launch the UI\*\*
-
-# Run the UI launcher to open the Chrome app window:
-
-# `Llama Chat UI.bat`
-
-# 
-
-# \---
-
-# 
-
-# \## 🛠️ Component Summary
-
-# 
-
-# | Component | File | Purpose |
-
-# | :--- | :--- | :--- |
-
-# | \*\*Inference\*\* | `Gemma 4 E4B Server.bat` | Boots the LLM engine |
-
-# | \*\*Interface\*\* | `Llama Chat UI.bat` | Launches Chrome App window |
-
-# | \*\*Cleanup\*\* | `llama-ui-launcher.vbs` | Manages temp workspace lifecycle |
-
-
-
+```
+C:\llamacpp-setup\
+├── Gemma 4 E4B Server.bat       # Server launcher
+├── ui-config.json                # System prompt config
+├── llama-server.exe              # llama.cpp server binary
+├── gemma-4-E4B-it-Q4_K_M.gguf  # Gemma 4 E4B model
+├── Qwen3.5-9B-Q4_K_M.gguf      # Qwen 3.5 9B model (alternative)
+├── my_files/
+│   ├── Llama Chat UI.bat        # Chrome UI launcher
+│   └── llama-ui-launcher.vbs    # Silent VBS wrapper
+└── *.dll                         # Runtime libraries
+```
