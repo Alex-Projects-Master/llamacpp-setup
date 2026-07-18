@@ -6,7 +6,7 @@ Local LLM server running Gemma 4 E4B with chat UI and built-in tool calling.
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| Server | `Gemma 4 E4B Server.bat` | Launches llama-server.exe with model, tools, and UI config |
+| Servers | `Gemma 4 E4B Server.bat` & `Qwen 3.5 9B Server.bat` | Launches llama-server.exe with model, tools, and UI config |
 | Chat UI | `my_files/Llama Chat UI.bat` | Opens Chrome app window for chat interface |
 | Launcher | `my_files/llama-ui-launcher.vbs` | Silent wrapper that launches UI bat file |
 | Config | `ui-config.json` | System prompt for Windows command defaults |
@@ -15,7 +15,7 @@ Local LLM server running Gemma 4 E4B with chat UI and built-in tool calling.
 
 ### Step 1: Start the Server
 
-Run `Gemma 4 E4B Server.bat` to start the inference engine.
+Run either `Gemma 4 E4B Server.bat` or `Qwen 3.5 9B Server.bat` to start the inference engine.
 
 Server binds to `192.168.1.70:1234` with tools enabled and reasoning disabled.
 
@@ -31,7 +31,7 @@ The Chrome profile is temporary and auto-deletes on close.
 
 The server working directory is set to `C:\Workspace` in the bat file. Tool calls (read_file, write_file, etc.) operate relative to this directory.
 
-To change, edit the `cd /d` line in `Gemma 4 E4B Server.bat`:
+To change, edit the `cd /d` line in either `(model) Server.bat`:
 
 ```bat
 cd /d "C:\Your\Custom\Path"
@@ -82,11 +82,13 @@ When `--tools all` is enabled, the model can use:
 ```
 C:\llamacpp-setup\
 ├── Gemma 4 E4B Server.bat       # Server launcher
+├── Qwen 3.5 9B Server.bat       # Server launcher
 ├── ui-config.json                # System prompt config
 ├── llama-server.exe              # llama.cpp server binary
 ├── gemma-4-E4B-it-Q4_K_M.gguf  # Gemma 4 E4B model
-├── Qwen3.5-9B-Q4_K_M.gguf      # Qwen 3.5 9B model (alternative)
+├── Qwen3.5-9B-Q4_K_M.gguf      # Qwen 3.5 9B model
 ├── my_files/
+│   ├── Shortcut Icons           # Custom model icons for server batch files / UI  
 │   ├── Llama Chat UI.bat        # Chrome UI launcher
 │   └── llama-ui-launcher.vbs    # Silent VBS wrapper
 └── *.dll                         # Runtime libraries
