@@ -1,6 +1,6 @@
 # Llama.cpp Local Server Setup
 
-Local LLM server running Gemma 4 E4B with chat UI and built-in tool calling.
+Local LLM server running Gemma 4 E4B or Qwen 3.5 9B with chat UI and built-in tool calling.
 
 ## System Components
 
