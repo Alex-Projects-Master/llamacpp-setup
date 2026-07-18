@@ -8,4 +8,4 @@ echo Reasoning Engine: DISABLED
 echo Tools: ENABLED
 echo ===================================================
 
-C:\llamacpp-setup\llama-server.exe -m "C:\llamacpp-setup\Qwen3.5-9B-Q4_K_M.gguf" --ctx-size 32768 -t 6 --host 192.168.1.70 --port 1234 -np 2 --embedding --reasoning "off" --tools all --ui-config-file "C:\llamacpp-setup\ui-config.json"
+C:\llamacpp-setup\llama-server.exe -m "C:\llamacpp-setup\Qwen3.5-9B-Q4_K_M.gguf" -c 32768 -t 6 --host 192.168.1.70 --port 1234 --np 1 --embedding --reasoning "off" --tools all --ui-config-file "C:\llamacpp-setup\ui-config.json"
