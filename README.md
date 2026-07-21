@@ -1,12 +1,12 @@
 # Llama.cpp Local Server Setup
 
-Local LLM server running Gemma 4 E4B or Qwen 3.5 9B with chat UI and built-in tool calling.
+Local LLM server running Gemma 4 E4B, Qwen 3.5 9B & Qwythos 9B with chat UI and built-in tool calling.
 
 ## System Components
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| Servers | `Gemma 4 E4B Server.bat` & `Qwen 3.5 9B Server.bat` | Launches llama-server.exe with model, tools, and UI config |
+| Servers | `Gemma 4 E4B Server.bat` `Qwen 3.5 9B Server.bat` `Qwythos 9B Server.bat` | Launches llama-server.exe with model, tools, and UI config |
 | Chat UI | `my_files/Llama Chat UI.bat` | Opens Chrome app window for chat interface |
 | Launcher | `my_files/llama-ui-launcher.vbs` | Silent wrapper that launches UI bat file |
 | Config | `ui-config.json` | System prompt for Windows command defaults |
@@ -15,7 +15,7 @@ Local LLM server running Gemma 4 E4B or Qwen 3.5 9B with chat UI and built-in to
 
 ### Step 1: Start the Server
 
-Run either `Gemma 4 E4B Server.bat` or `Qwen 3.5 9B Server.bat` to start the inference engine.
+Run `Gemma 4 E4B Server.bat` or any of the `Server.bat's` to start the inference engine.
 
 Server binds to `192.168.1.70:1234` with tools enabled and reasoning disabled.
 
@@ -58,7 +58,7 @@ Edit the `systemMessage` field to customize model behavior:
 | `-t` | `6` | CPU threads |
 | `--host` | `192.168.1.70` | Bind address |
 | `--port` | `1234` | Bind port |
-| `-np` | `2` | Parallel slots |
+| `-np` | `1` | Parallel slots |
 | `--embedding` | | Enable embeddings |
 | `--reasoning` | `off` | Disable reasoning |
 | `--tools` | `all` | Enable all built-in tools |
@@ -81,15 +81,17 @@ When `--tools all` is enabled, the model can use:
 
 ```
 C:\llamacpp-setup\
-├── Gemma 4 E4B Server.bat       # Server launcher
-├── Qwen 3.5 9B Server.bat       # Server launcher
-├── ui-config.json                # System prompt config
-├── llama-server.exe              # llama.cpp server binary
-├── gemma-4-E4B-it-Q4_K_M.gguf  # Gemma 4 E4B model
-├── Qwen3.5-9B-Q4_K_M.gguf      # Qwen 3.5 9B model
+├── Gemma 4 E4B Server.bat                    # Server launcher
+├── Qwen 3.5 9B Server.bat                    # Server launcher
+├── Qwythos 9B Server.bat's                   # Server launcher
+├── ui-config.json                            # System prompt config
+├── llama-server.exe                          # llama.cpp server binary
+├── gemma-4-E4B-it-Q4_K_M.gguf                # Gemma 4 E4B model
+├── Qwen3.5-9B-Q4_K_M.gguf                    # Qwen 3.5 9B model
+├── Qwythos-9B-Claude-Mythos-5-1M-Q4_K_M.gguf # Qwythos 9B model
 ├── my_files/
-│   ├── Shortcut Icons           # Custom model icons for server batch files / UI  
-│   ├── Llama Chat UI.bat        # Chrome UI launcher
-│   └── llama-ui-launcher.vbs    # Silent VBS wrapper
-└── *.dll                         # Runtime libraries
+│   ├── Shortcut Icons                        # Custom model icons for server batch files / UI  
+│   ├── Llama Chat UI.bat                     # Chrome UI launcher
+│   └── llama-ui-launcher.vbs                 # Silent VBS wrapper
+└── *.dll                                     # Runtime libraries
 ```
