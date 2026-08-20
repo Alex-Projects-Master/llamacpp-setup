@@ -9,4 +9,4 @@ echo Reasoning Engine: ENABLED
 echo Tools: ENABLED
 echo ===================================================
 
-C:\llamacpp-setup\llama-server.exe -m "C:\llamacpp-setup\Qwythos-9B-Claude-Mythos-5-1M-Q4_K_M.gguf" --mmproj "C:\llamacpp-setup\mmproj-Qwythos-9B-Claude-Mythos-5-1M-F16.gguf" -c 32768 -t 6 --host 192.168.1.70 --port 1234 -np 1 --embedding --reasoning "on" -n 8192 --temp 0.6 --top-p 0.95 --top-k 20 --repeat-penalty 1.05
+C:\llamacpp-setup\llama-server.exe -m "C:\llamacpp-setup\Qwythos-9B-v2-Q4_K_M.gguf" --mmproj "C:\llamacpp-setup\mmproj-Qwythos-9B-v2-BF16.gguf" -c 32768 -t 6 --host 192.168.1.70 --port 1234 -np 1 --embedding --tools all --reasoning "on" -n 8192 --temp 0.6 --top-p 0.95 --top-k 20 --repeat-penalty 1.05
