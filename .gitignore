@@ -1,2 +1,4 @@
 my_files/Python/
 *.gguf
+*.dll
+*.exe

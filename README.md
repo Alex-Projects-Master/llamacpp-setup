@@ -13,13 +13,17 @@ Local LLM server running Gemma 4 E4B, Qwen 3.5 9B & Qwythos 9B with chat UI and 
 
 ## Launch Sequence
 
-### Step 1: Start the Server
+### Step 1: Download llama.cpp
+
+Go to [https://github.com/ggml-org/llama.cpp/releases](https://github.com/ggml-org/llama.cpp/releases) to download the latest release files (such as `llama-bin-win-avx2-x64.zip` or the relevant build for your system) and extract them into this folder.
+
+### Step 2: Start the Server
 
 Run `Gemma 4 E4B Server.bat` or any of the `Server.bat's` to start the inference engine.
 
 Server binds to `192.168.1.70:1234` with tools enabled and reasoning disabled.
 
-### Step 2: Launch the UI
+### Step 3: Launch the UI
 
 Run `my_files/Llama Chat UI.bat` (or `llama-ui-launcher.vbs` for silent launch) to open the Chrome chat window.
 
