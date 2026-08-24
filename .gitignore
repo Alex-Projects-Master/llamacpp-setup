@@ -2,3 +2,4 @@ my_files/Python/
 *.gguf
 *.dll
 *.exe
+*LICENSE-LLVM-OpenMP
