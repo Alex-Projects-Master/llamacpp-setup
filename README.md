@@ -1,6 +1,6 @@
-# Llama.cpp Local Server Setup
+# Llama.cpp CPU-Only Local Server Setup
 
-Local LLM server running Gemma 4 E4B, Qwen 3.5 9B & Qwythos 9B with chat UI and built-in tool calling.
+Local LLM CPU-only server running Gemma 4 E4B, Qwen 3.5 9B & Qwythos 9B with chat UI and built-in tool calling.
 
 ## System Components
 
@@ -84,7 +84,7 @@ When `--tools all` is enabled, the model can use:
 ## Files
 
 ```
-C:\llamacpp-setup\
+llamacpp-setup\
 ├── Gemma 4 E4B Server.bat                    # Server launcher
 ├── Qwen 3.5 9B Server.bat                    # Server launcher
 ├── Qwythos 9B Server.bat's                   # Server launcher
@@ -92,10 +92,10 @@ C:\llamacpp-setup\
 ├── llama-server.exe                          # llama.cpp server binary
 ├── gemma-4-E4B-it-Q4_K_M.gguf                # Gemma 4 E4B model
 ├── Qwen3.5-9B-Q4_K_M.gguf                    # Qwen 3.5 9B model
-├── Qwythos-9B-Claude-Mythos-5-1M-Q4_K_M.gguf # Qwythos 9B model
+├── Qwythos-9B-v2-Q4_K_M.gguf                 # Qwythos 9B V2 model
+│   ├──mmproj-Qwythos-9B-v2-BF16.gguf         # Vision model to go alongside Qwythos 9B V2
 ├── my_files/
-│   ├── Shortcut Icons                        # Custom model icons for server batch files / UI  
-│   ├── Llama Chat UI.bat                     # Chrome UI launcher
-│   └── llama-ui-launcher.vbs                 # Silent VBS wrapper
-└── *.dll                                     # Runtime libraries
+    ├── Shortcut Icons                        # Custom model icons for server batch files / UI  
+    ├── Llama Chat UI.bat                     # Chrome UI launcher
+    └── llama-ui-launcher.vbs                 # Silent VBS wrapper
 ```
