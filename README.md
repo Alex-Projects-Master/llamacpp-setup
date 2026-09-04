@@ -7,8 +7,8 @@ Local LLM CPU-only server running Gemma 4 E4B, Qwen 3.5 9B & Qwythos 9B with cha
 | Component | File | Purpose |
 |-----------|------|---------|
 | Servers | `Gemma 4 E4B Server.bat` `Qwen 3.5 9B Server.bat` `Qwythos 9B Server.bat` | Launches llama-server.exe with model, tools, and UI config |
-| Chat UI | `my_files/Llama Chat UI.bat` (or `llama-ui-launcher.vbs`) | Opens Chrome app window for chat interface |
-
+| Chat UI | `my_files/Llama Chat UI.bat` | Opens Chrome app window for chat interface |
+| Launcher | `my_files/llama-ui-launcher.vbs` | Silent wrapper that launches UI bat file |
 | Config | `ui-config.json` | System prompt for Windows command defaults |
 
 ## Launch Sequence
@@ -17,9 +17,13 @@ Local LLM CPU-only server running Gemma 4 E4B, Qwen 3.5 9B & Qwythos 9B with cha
 
 Run `\installer.ps1` for a fresh install, or `\updater.ps1` to refresh an existing installation — both fetch the latest release from GitHub and extract directly into this folder, preserving your custom files. You can also manually download releases from [https://github.com/ggml-org/llama.cpp/releases](https://github.com/ggml-org/llama.cpp/releases) if needed.
 
+### Step 2: Start the Server
 
+Run `Gemma 4 E4B Server.bat` or any of the `Server.bat's` to start the inference engine.
 
-### Step 4: Launch the UI
+Server binds to `192.168.1.70:1234` with tools enabled and reasoning disabled.
+
+### Step 3: Launch the UI
 
 Run `my_files/Llama Chat UI.bat` (or `llama-ui-launcher.vbs` for silent launch) to open the Chrome chat window.
 
@@ -92,7 +96,6 @@ llamacpp-setup\
 │   ├──mmproj-Qwythos-9B-v2-BF16.gguf         # Vision model to go alongside Qwythos 9B V2
 ├── installer.ps1                            # Fresh install from GitHub
 ├── updater.ps1                              # Refresh existing binaries
-
 ├── my_files/
     ├── Shortcut Icons                        # Custom model icons for server batch files / UI  
     ├── Llama Chat UI.bat                     # Chrome UI launcher
