@@ -13,9 +13,9 @@ Local LLM CPU-only server running Gemma 4 E4B, Qwen 3.5 9B & Qwythos 9B with cha
 
 ## Launch Sequence
 
-### Step 1: Download llama.cpp
+### Step 1: Download or Update llama.cpp
 
-Go to [https://github.com/ggml-org/llama.cpp/releases](https://github.com/ggml-org/llama.cpp/releases) to download the latest release files (such as `llama-bin-win-avx2-x64.zip` or the relevant build for your system) and extract them into this folder.
+Run `\installer.ps1` for a fresh install, or `\updater.ps1` to refresh an existing installation — both fetch the latest release from GitHub and extract directly into this folder, preserving your custom files. You can also manually download releases from [https://github.com/ggml-org/llama.cpp/releases](https://github.com/ggml-org/llama.cpp/releases) if needed.
 
 ### Step 2: Start the Server
 
@@ -94,6 +94,8 @@ llamacpp-setup\
 ├── Qwen3.5-9B-Q4_K_M.gguf                    # Qwen 3.5 9B model
 ├── Qwythos-9B-v2-Q4_K_M.gguf                 # Qwythos 9B V2 model
 │   ├──mmproj-Qwythos-9B-v2-BF16.gguf         # Vision model to go alongside Qwythos 9B V2
+├── installer.ps1                            # Fresh install from GitHub
+├── updater.ps1                              # Refresh existing binaries
 ├── my_files/
     ├── Shortcut Icons                        # Custom model icons for server batch files / UI  
     ├── Llama Chat UI.bat                     # Chrome UI launcher
